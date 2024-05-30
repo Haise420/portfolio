@@ -1,0 +1,36 @@
+{% load static %}
+<html lang="en" class="hmtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post.naslov }}</title>
+    <link rel="stylesheet" href="{% static 'css/post.css' %}" class="css">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" class="css">
+    <link rel="stylesheet" href="{% static 'css/nav.css' %}" class="css">
+</head>
+<body>
+    <header>
+        {% include 'home/navigation-mobile.html' %}
+        {% include 'home/navigation.html' %}
+</header>
+    
+    <main>
+        <article>
+            {% if post.slika %}
+                <img src="{{ post.slika.url }}" alt="post Image">
+            {% endif %}
+            <h1>{{ post.naslov }}</h1>
+            <p>{{ post.deskripcija }}</p>
+            <p>Posted on {{ post.kreiran|date:"Y-m-d" }}</p>
+            <pre>{{ post.text }}</pre>
+        </article>
+        
+        
+        
+    </main>
+
+
+
+    <script src="{% static 'js/theme.js' %}"></script>
+</body>
+</html>

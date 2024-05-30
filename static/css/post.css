@@ -1,0 +1,8 @@
+article img{
+    width: 800px;
+}
+
+article pre{
+    width: 800px;
+    white-space: pre-wrap;
+}

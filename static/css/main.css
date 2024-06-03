@@ -69,3 +69,9 @@ main h2{
     --border-main: #0e1111;
 }
 
+.error{
+    text-align: center;
+    background-color: #FF6565;
+    color: white;
+    text-shadow: 1px 1px 2px black;
+}

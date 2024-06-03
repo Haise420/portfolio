@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 import requests
 from django.http import JsonResponse
-from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import authenticate, login as auth_login, logout
+
 
 # Create your views here.
 def home(request):
@@ -81,9 +82,8 @@ def register(request):
 
 def login(request):
 
-    # if request.user.is_authenticated:
-    #     return redirect('home')
-    context = {}    
+    context = {} 
+
     if request.method == 'POST':
 
         ime = request.POST.get('username')
@@ -95,13 +95,19 @@ def login(request):
 
         if user is not None:
             auth_login(request, user)
-            return redirect('admin_home')  # Preusmeri na željenu stranicu nakon prijave
+            return redirect('home')  # Preusmeri na željenu stranicu nakon prijave
         else:
             context['error'] = 'Pogrešno korisničko ime ili lozinka.'
 
-        return redirect('home')
+    if not context:
+        context = None
  
     return render(request, 'home/login.html', context)
+
+def logout_view(request):
+    logout(request)
+    # Redirect to a success page.
+    return redirect('home')
 
 
 def check_website(request):

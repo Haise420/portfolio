@@ -24,6 +24,16 @@
         </div>
         
         <div class="userpanel">
+
+            {% if user.is_authenticated %}
+
+            <div class="logout">
+                <a href="{% url 'logout' %}">Logout</a>
+            </div>
+
+            {% else %}
+
+
             <div class="sign-in">
                 <a href="{% url 'login' %}">Sign in</a>
             </div>
@@ -31,6 +41,8 @@
             <div class="sign-up">
                 <a href="">Sign up</a>
             </div>
+
+            {% endif %}
 
         </div>
         

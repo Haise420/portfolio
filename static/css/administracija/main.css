@@ -1,0 +1,34 @@
+:root {
+    --background-color: white;
+    --text-color: #0e1111;
+    --border-main: #0e1111;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+main{
+    display: grid;
+    justify-content: center;
+    gap: 25px;
+}
+
+main h2{
+    font-family: 'Cabinetrotesk-Medium', sans-serif;
+    letter-spacing: 0.1rem;
+}
+
+.dark-theme {
+    --background-color: #0e1111;
+    --text-color: white;
+    --border-main: white;
+}
+
+.light-theme {
+    --background-color: white;
+    --text-color: #0e1111;
+    --border-main: #0e1111;
+}

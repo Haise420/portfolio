@@ -8,6 +8,7 @@ urlpatterns = [
     path('tehnology/', views.tehnology, name="tehnology"),
     path('services/', views.services, name="services"),
     path('course/', views.course, name="course"),
+    path('account/', views.account, name="account"),
 
 
     path('<slug:post_title>', views.pregled_posta, name="pregled_posta"),
@@ -18,4 +19,9 @@ urlpatterns = [
     path('register/', views.register, name="register"),
     path('login/', views.login, name="login"),
     path('logout/', views.logout_view, name='logout'),
+
+    
+
+
+    path('administracija/', views.administracija, name="administracija")
 ]

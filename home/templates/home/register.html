@@ -15,10 +15,35 @@
 </header>
     
     <main>
+        <form id="signupForm" action="" method="POST">
 
+            {% csrf_token %}
+            
+            <input name="username" type="text" placeholder="Username" required>
+            <input name="password" id="password" type="password" placeholder="Password" required>
+            <input name="confirm-password" id="confirmPassword" type="password" placeholder="Confirm Password" required>
+            <button type="submit">SignUp</button>
+          
+
+        </form>
+
+
+
+
+        
     </main>
 
-
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                event.preventDefault(); // Prevent the form from submitting
+            }
+        });
+    </script>
 
     <script src="{% static 'js/theme.js' %}"></script>
 </body>

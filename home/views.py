@@ -20,7 +20,6 @@ def home(request):
     return render(request, 'home/home.html', context)
 
 
-
 def projects(request):
 
     projekti = Projekat.objects.all()
@@ -74,7 +73,12 @@ def pregled_projekta(request, projekat_naziv):
 def register(request):
 
     if request.method == "POST":
+        
+        ime = request.POST.get("username")
+        sifra = request.POST.get("password")
 
+        novi_korisnik = User(username=ime, password=sifra)
+        novi_korisnik.save()
         
         return redirect('login')
     
@@ -89,7 +93,6 @@ def login(request):
         ime = request.POST.get('username')
         sifra = request.POST.get('password')
 
-        print(ime,sifra)
 
         user = authenticate(request, username=ime, password=sifra)
 
@@ -124,3 +127,13 @@ def check_website(request):
         except requests.RequestException:
             return JsonResponse({'status': 'offline'})
     return JsonResponse({'status': 'error'})
+
+def account(request):
+
+
+    return render(request, 'home/account.html')
+
+def administracija(request):
+
+
+    return render(request, 'administracija/home.html')

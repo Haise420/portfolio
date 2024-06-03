@@ -83,7 +83,7 @@ def login(request):
 
     # if request.user.is_authenticated:
     #     return redirect('home')
-    
+    context = {}    
     if request.method == 'POST':
 
         ime = request.POST.get('username')
@@ -93,11 +93,15 @@ def login(request):
 
         user = authenticate(request, username=ime, password=sifra)
 
-        auth_login(request, user)
+        if user is not None:
+            auth_login(request, user)
+            return redirect('admin_home')  # Preusmeri na željenu stranicu nakon prijave
+        else:
+            context['error'] = 'Pogrešno korisničko ime ili lozinka.'
 
         return redirect('home')
  
-    return render(request, 'home/login.html')
+    return render(request, 'home/login.html', context)
 
 
 def check_website(request):

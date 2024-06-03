@@ -1,0 +1,21 @@
+.korisnik-group{
+    display: grid;
+    grid-template-columns: repeat(3, 200px);
+    grid-template-rows: repeat(3, 200px);
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+
+}
+
+
+.korisnik{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.korisnik img{
+    max-width: 200px;
+    min-height: 150px;
+}

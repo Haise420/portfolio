@@ -7,6 +7,7 @@
     <title>Administracija</title>
     <link rel="stylesheet" href="{% static 'css/administracija/main.css' %}" class="css">
     <link rel="stylesheet" href="{% static 'css/administracija/nav.css' %}" class="css">
+    <link rel="stylesheet" href="{% static 'css/administracija/projekti.css' %}" class="css">
 </head>
 <body>
 
@@ -15,16 +16,14 @@
     </header>
 
     <main>
+  
+        {{ projekat.naziv }}
 
-        <!-- za svaki ImeModela u x -->
-        {% for kurs in kursevi %}
 
-        <!-- {{imeModela.poljeModela}} -->
-        {{kurs.naziv}}
 
-        {% endfor %}
 
     </main>
+
     <script src="{% static 'js/theme.js' %}"></script>
     
 </body>

@@ -1,0 +1,21 @@
+.post-group{
+    display: grid;
+    grid-template-columns: repeat(3, 200px);
+    grid-template-rows: repeat(3, 200px);
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+
+}
+
+
+.post{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.post img{
+    max-width: 200px;
+    min-height: 150px;
+}

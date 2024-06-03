@@ -7,6 +7,8 @@
     <title>Administracija</title>
     <link rel="stylesheet" href="{% static 'css/administracija/main.css' %}" class="css">
     <link rel="stylesheet" href="{% static 'css/administracija/nav.css' %}" class="css">
+    <link rel="stylesheet" href="{% static 'css/administracija/korisnik.css' %}" class="css">
+
 </head>
 <body>
 
@@ -15,6 +17,18 @@
     </header>
 
     <main>
+
+        <div class="korisnik-group">
+            {% for korisnik in korisnici %}
+                <div class="korisnik">
+                    <img src="{{korisnik.slika.url}}" alt="">
+                    <a href="{% url 'pregled_korisnik' korisnik_id=korisnik.id %}">
+                        {{korisnik.ime}}
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+
 
     </main>
     

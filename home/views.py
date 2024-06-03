@@ -70,6 +70,7 @@ def pregled_projekta(request, projekat_naziv):
 
     return  render(request, 'home/view_project.html', context)
 
+
 def register(request):
 
     if request.method == "POST":
@@ -137,3 +138,80 @@ def administracija(request):
 
 
     return render(request, 'administracija/home.html')
+
+def pregled_projekata(request):
+
+    projekti = Projekat.objects.all()
+    context = {'projekti': projekti}
+
+    return render(request, 'administracija/projekti.html', context)
+
+
+
+def admin_pregled_projekta(request, projekat_id):
+
+    projekat = Projekat.objects.get(id=projekat_id)
+
+    context = {'projekat': projekat}
+
+    return  render(request, 'administracija/projekat.html', context)
+
+
+
+def pregled_tehnologija(request):
+
+    tehnologije = Tehnologija.objects.all()
+    context = {'tehnologije': tehnologije}
+
+    return render(request, 'administracija/tehnologije.html', context)
+
+def pregled_kurseva(request):
+   
+    kursevi = Kurs.objects.all()
+    context = {'kursevi': kursevi}
+
+    return render(request, 'administracija/kursevi.html', context)
+
+def pregled_postova(request):
+
+
+    # x je informacija koju saljes u contextu
+    postovi = Post.objects.all()
+
+    context = {'postovi': postovi}
+
+    return render(request, 'administracija/postovi.html', context)
+
+
+def pregled_posta(request, post_id):
+
+
+    # x je informacija koju saljes u contextu
+    post = Post.objects.get(id=post_id)
+
+    context = {'post': post}
+
+    return render(request, 'administracija/post.html', context)
+
+def pregled_svih_korisnika(request):
+
+    korisnici = Korisnik.objects.all()
+    context = {'korisnici': korisnici}
+
+    return render(request, 'administracija/korisnici.html', context)
+
+def pregled_korisnika(request, korisnik_id):
+
+    korisnik = Korisnik.objects.get(id=korisnik_id)
+    context = {'korisnik': korisnik}
+
+    return render(request, 'administracija/korisnik.html', context)
+
+
+
+
+# pregled_projekata
+# pregled_tehnologija
+# pregled_kurseva
+# pregled_postova
+# pregled_korisnika

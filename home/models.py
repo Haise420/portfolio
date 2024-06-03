@@ -6,6 +6,7 @@ from django.utils.text import slugify
 class Korisnik(models.Model):
     ime = models.OneToOneField(User, on_delete=models.CASCADE)
     pretplata = models.BooleanField(default=False)
+    slika = models.ImageField(upload_to='korisnici/slike', blank=True)
 
     def __str__(self):
         return self.ime.username

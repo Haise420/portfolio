@@ -15,7 +15,13 @@
     </header>
 
     <main>
+        <!-- za svaki ImeModela u x -->
+        {% for tehnologija in tehnologije %}
 
+        <!-- {{imeModela.poljeModela}} -->
+        {{tehnologija.ime}}
+
+        {% endfor %}
     </main>
 
     <script src="{% static 'js/theme.js' %}"></script>

@@ -7,6 +7,7 @@
     <title>Administracija</title>
     <link rel="stylesheet" href="{% static 'css/administracija/main.css' %}" class="css">
     <link rel="stylesheet" href="{% static 'css/administracija/nav.css' %}" class="css">
+    <link rel="stylesheet" href="{% static 'css/administracija/projekti.css' %}" class="css">
 </head>
 <body>
 
@@ -15,6 +16,19 @@
     </header>
 
     <main>
+        <div class="project-group">
+            {% for projekat in projekti %}
+                <div class="project">
+                    <img src="{{projekat.slike.first.slika.url}}" alt="">
+                    
+                    <a href="{% url 'pregled_projekta' projekat_id=projekat.id %}">{{projekat.naziv}}</a>
+                </div>
+            {% endfor %}
+        </div>
+
+
+
+</div>
 
     </main>
 

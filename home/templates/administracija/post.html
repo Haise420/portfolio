@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administracija</title>
+    <link rel="stylesheet" href="{% static 'css/administracija/post.css' %}" class="css">
     <link rel="stylesheet" href="{% static 'css/administracija/main.css' %}" class="css">
     <link rel="stylesheet" href="{% static 'css/administracija/nav.css' %}" class="css">
 </head>
@@ -15,16 +16,17 @@
     </header>
 
     <main>
+     
+            <div class="post">
+                <img src="{{post.slika.url}}" alt="">
+                {{post.naslov}}
+            </div>
+      
 
-        <!-- za svaki ImeModela u x -->
-        {% for kurs in kursevi %}
-
-        <!-- {{imeModela.poljeModela}} -->
-        {{kurs.naziv}}
-
-        {% endfor %}
+        
 
     </main>
+
     <script src="{% static 'js/theme.js' %}"></script>
     
 </body>

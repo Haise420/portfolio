@@ -73,5 +73,22 @@
 
 
     <script src="{% static 'js/theme.js' %}"></script>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    var articleElements = document.querySelectorAll('article');
+
+
+    articleElements.forEach(function(articleElement) {
+        articleElement.addEventListener('click', function() {
+            var linkElement = articleElement.querySelector('a');
+
+            if (linkElement) {
+                window.location.href = linkElement.getAttribute('href');
+            }
+        });
+    });
+});
+    </script>
 </body>
 </html>

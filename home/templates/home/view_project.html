@@ -1,0 +1,190 @@
+{% load static %}
+<html lang="en" class="hmtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{projekat.naziv}}</title>
+    <link rel="stylesheet" href="{% static 'css/projekti.css' %}" class="css">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" class="css">
+    <link rel="stylesheet" href="{% static 'css/nav.css' %}" class="css">
+</head>
+
+<body>
+    <header>
+        {% include 'home/navigation-mobile.html' %}
+        {% include 'home/navigation.html' %}
+    </header>
+    
+    <main>
+       
+        <div class="project-overview">
+            <div class="project-images-grid">
+                <span><h2>Project Images</h2></span>
+                
+                
+                <div class="project-images">
+                    {% for slika in projekat.slike.all %}
+                        <div class="image-wrapper {% if forloop.first %}{% elif forloop.counter == 2 %}behind left{% elif forloop.counter == 3 %}behind right{% endif %}">
+                            <img src="{{ slika.slika.url }}" alt="Slika {{ forloop.counter }}" class="{% if forloop.first %}main-image{% else %}secondary-image{% endif %}">
+                        </div>
+                    {% endfor %}
+                </div>
+
+                {% csrf_token %}
+                <button class="check-out" id="check-out">Check out</button>
+                <div id="status-message"></div>
+  
+
+            </div>
+
+            <div class="project-info">
+
+                <div class="project-name">
+                    <div class="name-bar">
+                        <span>
+                           <p>Project name:</p>
+                       </span>
+                       
+                       <p>{{ projekat.naziv }}</p>
+
+                   </div>
+                </div>
+
+                <div class="project-info-wrap">
+                    <div class="project-started">
+                        <div class="bar">
+                            <span>
+                                <p>Started:</p>
+                            </span>
+
+                            <p>{{ projekat.datum_pocetka }}</p>
+                        </div>
+                    </div>
+
+                    <div class="project-finished">
+                        <div class="bar">
+                             <span>
+                                <p>Finished:</p>
+                            </span>
+                            
+                            <p>{{projekat.datum_zavrsetka}}</p>
+
+                        </div>
+                    </div>
+
+                    <div class="project-version-stage">
+                        <div class="bar">
+                            <span>
+                                <p>Version stage:</p>
+                            </span>
+                            
+                            <p>{{projekat.verzija_stage}}</p>
+
+                        </div>
+                    </div>
+
+                    <div class="project-version">
+                        <div class="bar">
+                             <span>
+                                <p>Version:</p>
+                            </span>
+                            
+                            <p>{{projekat.verzija}}</p>
+
+                        </div>
+                    </div>
+
+                    <div class="project-difficulty">
+                        <div class="bar">
+                             <span>
+                                <p>Difficulty:</p>
+                            </span>
+                            
+                            <p>{{projekat.tezina}}</p>
+
+                        </div>
+                    </div>
+                    <div class="project-technologies-number">
+                        <div class="bar">
+                             <span>
+                                <p>Technologies:</p>
+                            </span>
+                            
+                            <p>{{projekat.tehnologije.count}}</p>
+                            
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <h2>About Project</h2>
+        <div class="project-about">
+            <pre>{{ projekat.opis }}</pre>
+
+        </div>
+
+        <h2>Technologies Used</h2>
+        <div class="project-technologies">
+            <div class="technologies-group">
+                {% for tehnologija in projekat.tehnologije.all %}
+                
+                <img src="{{tehnologija.slika.url}}" alt="">
+
+                {% endfor %}
+            </div>
+        </div>
+        
+    </main>
+
+
+
+    <script src="{% static 'js/theme.js' %}"></script>
+
+    <script>
+document.getElementById('check-out').addEventListener('click', function() {
+    const button = this;
+    const statusMessage = document.getElementById('status-message');
+    button.style.display = 'none';
+    statusMessage.style.display = 'flex';
+    statusMessage.innerHTML = 'Checking website<span id="dots"></span>';
+    let dots = '';
+    let dotCount = 0;
+    const interval = setInterval(() => {
+        dots += '.';
+        dotCount += 1;
+        if (dots.length > 3) {
+            dots = '';
+        }
+        document.getElementById('dots').innerText = dots;
+    }, 500);
+
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+    fetch('/check-website/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken
+        },
+        body: JSON.stringify({ url: '{{ projekat.link }}' })
+    })
+    .then(response => response.json())
+    .then(data => {
+        const delay = (3 - dotCount % 3) * 500;  // Calculate remaining time to complete three dots
+        setTimeout(() => {
+            clearInterval(interval);
+            if (data.status === 'online') {
+                window.location.href = '{{ projekat.link }}';
+            } else {
+                statusMessage.innerText = 'Website under maintenance';
+            }
+        }, delay);
+    });
+});
+
+
+    </script>
+</body>
+</html>

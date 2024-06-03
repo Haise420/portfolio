@@ -9,6 +9,7 @@
     border-radius: 3px;
     gap: 35px;
     font-family: 'Cabinetrotesk-Medium', sans-serif;
+    transition: 0.3s;
 }
 
 .main-div img{
@@ -27,15 +28,16 @@
 
 .finder{
     border: 1px solid var(--border-main);
-    width: 750px;
+    width: 770px;
     height: 50px;
     display: flex;
     justify-content: start;
-    padding-left: 50px;
+    padding-left: 30px;
     align-items: center;
     border-radius: 3px;
     gap: 35px;
     font-family: 'Cabinetrotesk-Medium', sans-serif;
+    transition: 0.3s;
 }
 
 .finder a{
@@ -103,10 +105,13 @@ article img{
 .post-info p{
     margin-top: 5px;
     margin-left: 0;
-
+    color: #41C9E2;
+    text-shadow: 1px 1px 1px black;
 }
 
 .post-info a{
     text-decoration: none;
-    color: #41C9E2;
+    color: var(--text-color);
+    transition: 0.3s;
+
 }

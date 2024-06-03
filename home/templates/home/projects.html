@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nikola Plazinic | Projects</title>
     <link rel="stylesheet" href="{% static 'css/main.css' %}" class="css">
+    <link rel="stylesheet" href="{% static 'css/projekti.css' %}" class="css">
     <link rel="stylesheet" href="{% static 'css/nav.css' %}" class="css">
 </head>
 <body>
@@ -14,7 +15,19 @@
 </header>
     
     <main>
-
+        <div class="project-grid">
+            {% for projekat in projekti %}
+            <div class="projekat">
+                {% if projekat.slike.exists %}
+                    <img src="{{ projekat.slike.first.slika.url }}" alt="Prva slika projekta {{ projekat.naziv }}">
+                {% else %}
+                    <img src="{% static 'images/default-image.jpg' %}" alt="Nema slike dostupne">
+                {% endif %}
+                <a href="{% url 'pregled_projekta' projekat_naziv=projekat.slug %}">{{ projekat.naziv }}</a>
+            </div>
+            {% endfor %}
+        </div>
+        
     </main>
 
 

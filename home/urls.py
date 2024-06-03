@@ -11,4 +11,10 @@ urlpatterns = [
 
 
     path('<slug:post_title>', views.pregled_posta, name="pregled_posta"),
+    path('project/<slug:projekat_naziv>', views.pregled_projekta, name="pregled_projekta"),
+
+    path('check-website/', views.check_website, name='check-website'),
+
+    path('register/', views.register, name="register"),
+    path('login/', views.login, name="login"),
 ]

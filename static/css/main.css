@@ -54,6 +54,7 @@ main{
 
 main h2{
     font-family: 'Cabinetrotesk-Medium', sans-serif;
+    letter-spacing: 0.1rem;
 }
 
 .dark-theme {
